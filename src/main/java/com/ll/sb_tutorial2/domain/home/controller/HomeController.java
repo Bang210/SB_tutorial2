@@ -3,6 +3,7 @@ package com.ll.sb_tutorial2.domain.home.controller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +35,13 @@ public class HomeController {
     Tester showTest2(@RequestParam(defaultValue = "default") String v1,
                      @RequestParam(defaultValue = "12") int v2) {
         return new Tester(v1, v2);
+    }
+
+    @GetMapping("/test3")
+    String showTest3(Model model) {
+        model.addAttribute("val1", "hi");
+        model.addAttribute("val2", "daengsol");
+        return "test3";
     }
 
 }
