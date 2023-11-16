@@ -1,5 +1,7 @@
 package com.ll.sb_tutorial2.domain.home.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,4 +29,17 @@ public class HomeController {
         return "계산결과: %d".formatted(a + b);
     }
 
+    @GetMapping("/test2")
+    @ResponseBody
+    Tester showTest2(@RequestParam(defaultValue = "default") String v1,
+                     @RequestParam(defaultValue = "12") int v2) {
+        return new Tester(v1, v2);
+    }
+
+}
+@AllArgsConstructor
+@Data
+class Tester {
+    private String value1;
+    private int value2;
 }
