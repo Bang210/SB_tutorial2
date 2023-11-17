@@ -1,25 +1,33 @@
-<div style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;" >
+<form style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;" >
     <input type="text" id="input-title" placeholder="제목">
 
     <input type="text" id="input-body" placeholder="내용">
 
-    <a href="javascript:;" onclick="submitWriteForm();">
+    <button onclick="submitWriteForm();">
         등록
-    </a>
-</div>
+    </button>
+</form>
 
 <script>
     function submitWriteForm() {
+        const inputTitle = document.getElementById('input-title');
+        const inputBody = document.getElementById('input-body');
+
+        inputTitle.value = inputTitle.value.trim();
+        inputBody.value = inputBody.value.trim();
+
         const title = document.getElementById('input-title').value.trim();
         const body = document.getElementById('input-body').value.trim();
 
         if (title.length == 0) {
-            alert('제목을 입력해주세요.')
+            alert('제목을 입력해주세요.');
+            inputTitle.focus();
             return;
         }
 
         if (body.length == 0) {
-            alert('내용을 입력해주세요.')
+            alert('내용을 입력해주세요.');
+            inputBody.focus();
             return;
         }
 
