@@ -1,4 +1,4 @@
-package com.ll.sb_tutorial2.domain.article.entity;
+package com.ll.sb_tutorial2.domain.article.article.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,6 @@
-package com.ll.sb_tutorial2.domain.home.controller;
+package com.ll.sb_tutorial2.domain.home.home.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.ll.sb_tutorial2.domain.home.home.tester.Tester;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,10 +43,4 @@ public class HomeController {
         return "test3";
     }
 
-}
-@AllArgsConstructor
-@Data
-class Tester {
-    private String value1;
-    private int value2;
 }

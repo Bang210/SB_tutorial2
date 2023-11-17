@@ -1,8 +1,7 @@
-package com.ll.sb_tutorial2.domain.article.controller;
+package com.ll.sb_tutorial2.domain.article.article.controller;
 
-import com.ll.sb_tutorial2.domain.article.entity.Article;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.ll.sb_tutorial2.domain.article.article.entity.Article;
+import com.ll.sb_tutorial2.global.rsData.RsData;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +20,9 @@ public class ArticleController {
         return "article/write";
     }
 
-    @PostMapping("/article/doWrite")
+    @PostMapping("/article/write")
     @ResponseBody
-    RsData doWrite(
+    RsData write(
             String title,
             String body
     ) {
@@ -49,10 +48,3 @@ public class ArticleController {
     }
 }
 
-@AllArgsConstructor
-@Data
-class RsData<T> {
-    private String resultCode;
-    private String msg;
-    private T data;
-}
