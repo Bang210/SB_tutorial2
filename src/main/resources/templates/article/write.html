@@ -10,10 +10,21 @@
 
 <script>
     function submitWriteForm() {
-        const title = document.getElementById('input-title').value;
-        const body = document.getElementById('input-body').value;
+        const title = document.getElementById('input-title').value.trim();
+        const body = document.getElementById('input-body').value.trim();
+
+        if (title.length == 0) {
+            alert('제목을 입력해주세요.')
+            return;
+        }
+
+        if (body.length == 0) {
+            alert('내용을 입력해주세요.')
+            return;
+        }
+
         alert("등록되었습니다.")
-        location.href = `/article/doWrite?title=${title}&body=${body}`; //따옴표가 아닌 백팀임
+        location.href = `/article/doWrite?title=${title}&body=${body}`; //따옴표가 아닌 백틱임
     }
 
 </script>
