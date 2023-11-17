@@ -1,9 +1,9 @@
-<form style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;" >
+<form onsubmit="submitWriteForm(); return false" style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;" >
     <input type="text" id="input-title" placeholder="제목">
 
     <input type="text" id="input-body" placeholder="내용">
 
-    <button onclick="submitWriteForm();">
+    <button type="submit">
         등록
     </button>
 </form>
@@ -16,8 +16,8 @@
         inputTitle.value = inputTitle.value.trim();
         inputBody.value = inputBody.value.trim();
 
-        const title = document.getElementById('input-title').value.trim();
-        const body = document.getElementById('input-body').value.trim();
+        const title = inputTitle.value;
+        const body = inputBody.value;
 
         if (title.length == 0) {
             alert('제목을 입력해주세요.');
