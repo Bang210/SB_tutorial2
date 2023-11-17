@@ -1,6 +1,17 @@
-<div style="display: flex; flex-direction: column; gap: 20px;" >
-<input type="text" placeholder="제목">
+<div style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;" >
+    <input type="text" placeholder="제목">
 
-<input type="text" placeholder="내용">
-<a href="doWrite?title=제목&body=내용">작성</a>
+    <input type="text" placeholder="내용">
+
+    <a href="javascript:;" onclick="submitWriteForm();">
+        등록
+    </a>
 </div>
+
+<script>
+    function submitWriteForm() {
+        alert("등록되었습니다.")
+        location.href = "/article/doWrite?title=제목&body=내용";
+    }
+
+</script>
