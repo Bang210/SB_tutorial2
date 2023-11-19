@@ -7,6 +7,7 @@ import com.ll.sb_tutorial2.global.rsData.RsData;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +31,8 @@ public class ArticleController {
     @PostMapping("/article/write")
     @ResponseBody
     RsData write(
-            @NotBlank(message = "제목을 입력하세요.") String title,
-            @NotBlank(message = "내용을 입력하세요.") String body
+            @NotBlank String title,
+            @NotBlank String body
     ) {
         articleService.write(title, body);
 
@@ -42,6 +43,16 @@ public class ArticleController {
         );
 
         return rs;
+    }
+
+    @GetMapping("/article/list")
+    String showList(Model model) {
+
+        List<Article> articles = articleService.findAll();
+
+        model.addAttribute("articles", articles);
+
+        return "article/list";
     }
 
     @GetMapping("/article/getLastArticle")
