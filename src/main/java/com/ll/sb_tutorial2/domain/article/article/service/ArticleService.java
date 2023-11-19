@@ -1,24 +1,25 @@
 package com.ll.sb_tutorial2.domain.article.article.service;
 
 import com.ll.sb_tutorial2.domain.article.article.entity.Article;
+import com.ll.sb_tutorial2.domain.article.article.repository.ArticleRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleService {
-    public final List<Article> articles = new ArrayList<>();
-    private int idCount = 1;
-    public void write(String title, String body) {
-        Article article = new Article(idCount, title, body);
-        articles.add(article);
-        idCount++;
+    private final ArticleRepository articleRepository = new ArticleRepository();
+
+    public Article write(String title, String body) {
+
+        Article article = new Article(title, body);
+        articleRepository.save(article);
+        return article;
     }
 
     public Article findLastArticle() {
-        return articles.getLast();
+        return articleRepository.getLastArticle();
     }
 
     public List<Article> findAll() {
-        return articles;
+        return articleRepository.getArticles();
     }
 }
