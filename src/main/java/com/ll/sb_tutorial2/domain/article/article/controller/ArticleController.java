@@ -4,6 +4,7 @@ import com.ll.sb_tutorial2.domain.article.article.entity.Article;
 import com.ll.sb_tutorial2.domain.article.article.service.ArticleService;
 import com.ll.sb_tutorial2.global.rq.Rq;
 import com.ll.sb_tutorial2.global.rsData.RsData;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -29,8 +30,8 @@ public class ArticleController {
     @PostMapping("/article/write")
     @ResponseBody
     RsData write(
-            String title,
-            String body
+            @NotBlank(message = "제목을 입력하세요.") String title,
+            @NotBlank(message = "내용을 입력하세요.") String body
     ) {
         articleService.write(title, body);
 
