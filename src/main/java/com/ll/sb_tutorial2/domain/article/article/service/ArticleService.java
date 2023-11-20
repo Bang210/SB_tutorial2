@@ -41,6 +41,5 @@ public class ArticleService {
         Article article = findById(id).get();
         article.setTitle(title);
         article.setBody(body);
-        articleRepository.save(article);
     }
 }

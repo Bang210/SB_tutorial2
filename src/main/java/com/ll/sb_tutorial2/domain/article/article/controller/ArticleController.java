@@ -35,9 +35,8 @@ public class ArticleController {
     ) {
         articleService.write(title, body);
 
-        String msg = "id %d article created".formatted(articleService.findLastArticle().getId());
+        return rq.redirect("/article/list", "%d번 게시물이 생성되었습니다.".formatted(articleService.findLastArticle().getId()));
 
-        return "redirect:/article/list?msg=" + msg;
     }
 
     @GetMapping("/article/list")
@@ -62,9 +61,9 @@ public class ArticleController {
     @GetMapping("/article/delete/{id}")
     String delete(@PathVariable long id) {
 
-        String msg = "id %d article deleted".formatted(id);
         articleService.delete(id);
-        return "redirect:/article/list?msg=" + msg;
+
+        return rq.redirect("/article/list", "%d번 게시물이 삭제되었습니다.".formatted(id));
     }
 
     @GetMapping("/article/modify/{id}")
@@ -82,8 +81,7 @@ public class ArticleController {
     ) {
         articleService.modify(id, title, body);
 
-        String msg = "id %d article modified".formatted(id);
-        return "redirect:/article/list?msg=" + msg;
+        return rq.redirect("/article/list", "%d번 게시물이 수정되었습니다.".formatted(articleService.findLastArticle().getId()));
     }
 
     @GetMapping("/article/getLastArticle")

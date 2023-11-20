@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("/")
-    @ResponseBody
     String showMain() {
-        return "Main page";
+        return "redirect:/article/list";
     }
 
     @GetMapping("/about")
