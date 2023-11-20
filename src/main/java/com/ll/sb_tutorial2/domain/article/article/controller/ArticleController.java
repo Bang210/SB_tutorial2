@@ -3,13 +3,13 @@ package com.ll.sb_tutorial2.domain.article.article.controller;
 import com.ll.sb_tutorial2.domain.article.article.entity.Article;
 import com.ll.sb_tutorial2.domain.article.article.service.ArticleService;
 import com.ll.sb_tutorial2.global.rq.Rq;
-import com.ll.sb_tutorial2.global.rsData.RsData;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,20 +29,15 @@ public class ArticleController {
     }
 
     @PostMapping("/article/write")
-    @ResponseBody
-    RsData write(
+    String write(
             @NotBlank String title,
             @NotBlank String body
     ) {
         articleService.write(title, body);
 
-        RsData<Article> rs = new RsData<>(
-                "S-1",
-                "%d번 게시물이 작성되었습니다.".formatted(articleService.findLastArticle().getId()),
-                articleService.findLastArticle()
-        );
+        String msg = "id %d article created".formatted(articleService.findLastArticle().getId());
 
-        return rs;
+        return "redirect:/article/list?msg=" + msg;
     }
 
     @GetMapping("/article/list")
@@ -53,6 +48,42 @@ public class ArticleController {
         model.addAttribute("articles", articles);
 
         return "article/list";
+    }
+
+    @GetMapping("/article/detail/{id}")
+    String showDetail(Model model, @PathVariable long id) {
+        Article article = articleService.findById(id).get();
+
+        model.addAttribute("article", article);
+
+        return "article/detail";
+    }
+
+    @GetMapping("/article/delete/{id}")
+    String delete(@PathVariable long id) {
+
+        String msg = "id %d article deleted".formatted(id);
+        articleService.delete(id);
+        return "redirect:/article/list?msg=" + msg;
+    }
+
+    @GetMapping("/article/modify/{id}")
+    String showModify(@PathVariable long id, Model model) {
+        Article article = articleService.findById(id).get();
+        model.addAttribute("article", article);
+        return "article/modify";
+    }
+
+    @PostMapping("/article/modify/{id}")
+    String modify(
+            @PathVariable long id,
+            @NotBlank String title,
+            @NotBlank String body
+    ) {
+        articleService.modify(id, title, body);
+
+        String msg = "id %d article modified".formatted(id);
+        return "redirect:/article/list?msg=" + msg;
     }
 
     @GetMapping("/article/getLastArticle")
