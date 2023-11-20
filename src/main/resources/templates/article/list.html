@@ -1,17 +1,12 @@
-<h1>리스트</h1>
+<html layout:decorate="~{global/layout}">
 
-<ul style="display: flex; gap: 20px;">
-    <li><a href="/article/write">글쓰기</a></li>
-    <li><a href="/article/list">글목록</a></li>
-</ul>
+<div layout:fragment="content">
 
-<div style="color: red" th:if="${param.msg} != null">
-    [[${param.msg}]]
-</div>
+    <h1>리스트</h1>
 
-<ul th:if="${articles.size()} > 0">           <!--조건이 참이면 실행한다-->
-    <li th:each="article : ${articles.reversed}">
-        <a th:href="|/article/detail/${article.id}|" th:text="|${article.id}. ${article.title}|"></a>
-    </li>
+    <ul th:if="${articles.size()} > 0">           <!--조건이 참이면 실행한다-->
+        <li th:each="article : ${articles.reversed}">
+            <a th:href="|/article/detail/${article.id}|" th:text="|${article.id}. ${article.title}|"></a>
+        </li>
 
-</ul>
+    </ul>
