@@ -2,19 +2,17 @@
 
 <div layout:fragment="content">
 
-    <h1>글 상세 페이지</h1>
+    <h1 class="font-bold mb-2">게시물</h1>
 
-    <hr>
-
-
-    <h2>번호: <span th:text="${article.id}"></span></h2>
-    <h2>제목: <span th:text="${article.title}"></span></h2>
-    <h2>내용</h2>
+    <div class="mt-2">
+        <div class="badge badge-outline" th:text="${article.id}"></div>
+        <span th:text="${article.title}"></span>
+    </div>
+    <hr class="mt-1 mb-3">
     <span th:text="${article.body}"></span>
 
-    <hr>
-
-    <ul style="display: flex; gap: 20px;">
-        <li><a th:href="|/article/modify/${article.id}|">수정</a></li>
-        <li><a onclick="return confirm('삭제하시겠습니까?')" th:href="|/article/delete/${article.id}|">삭제</a></li>
+    <ul class="flex gap-5 justify-center">
+        <li><a class="btn-link" th:href="|/article/modify/${article.id}|">수정</a></li>
+        <li><a class="btn-link" onclick="return confirm('삭제하시겠습니까?')" th:href="|/article/delete/${article.id}|">삭제</a>
+        </li>
     </ul>
